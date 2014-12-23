@@ -1,0 +1,114 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace Exercice_8._8
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            bool[,] tableau = new bool[10,10];
+            byte optionMenu = 0;
+            byte colonne = 0;
+            byte ligne = 0;
+            
+                         
+
+                        //initialisation du tableau
+                        for (byte i = 0; i < 10; i++)
+                        {
+                            for (byte j = 0; j < 10; j++)
+                            {
+                                tableau[i, j] = false;
+                            }
+                        }
+
+                        Console.WriteLine();
+                        Console.WriteLine("Dans quelle case voulez-vous placer le pion ?");
+                        Console.Write("Colonne ? (1-10) ");
+                        colonne = Convert.ToByte(Console.ReadLine());
+                        //Contrôle de saisi
+                        while (colonne > 10)
+                        {
+                            Console.WriteLine("Valeur incorrecte");
+                            colonne = Convert.ToByte(Console.ReadLine());
+                        }
+                        colonne-=1;
+                        Console.Write("Ligne ? (1-10) ");
+                        ligne = Convert.ToByte(Console.ReadLine());
+                        while (ligne > 10)
+                        {
+                            Console.WriteLine("Valeur incorrecte");
+                            ligne = Convert.ToByte(Console.ReadLine());
+                        }
+                        ligne-=1;
+
+
+                Console.WriteLine("Dans quelle direction souhaitez-vous déplacer le pion ?");
+                Console.WriteLine();
+                Console.WriteLine("1. En haut à gauche");
+                Console.WriteLine("2. En haut à droite");
+                Console.WriteLine("3. En bas à gauche");
+                Console.WriteLine("4. En bas à droite \n");
+                
+                optionMenu=Convert.ToByte(Console.ReadLine());
+                while (optionMenu>4)
+                {
+                    Console.WriteLine("Valeur incorrecte");
+                    optionMenu=Convert.ToByte(Console.ReadLine());
+                }
+
+                
+                switch (optionMenu)
+                {
+                    case 1:
+                        ligne+=1;
+                        colonne-=1;
+                        break;
+                    case 2:
+                        ligne+=1;
+                        colonne+=1;
+                        break;
+                    case 3:
+                        ligne-=1;
+                        colonne-=1;
+                        break;
+                    case 4:
+                        ligne-=1;
+                        colonne+=1;
+                        break;
+                }
+
+                if ((ligne<1)||(ligne>9)||(colonne<1)||(ligne>9))
+                {
+                    Console.WriteLine("Placement impossible");
+                }
+                else
+                {
+                    tableau[ligne, colonne] = true;
+                    //affichage plateau
+                    for (int i = 0;i<10;i++)
+                    {
+                        for (int j = 0;j<10;j++)
+                        {
+                            if (tableau[i,j]==false)
+                            {
+                                Console.Write("O");
+                            }
+                            if (tableau[i,j]==true)
+                            {
+                                Console.Write("X");
+                            }
+                        }
+                        Console.Write("\n");
+                    }
+                }
+                Console.ReadLine();              
+
+
+
+        }
+    }
+}
